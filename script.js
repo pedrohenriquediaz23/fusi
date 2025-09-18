@@ -473,7 +473,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }, observerOptions);
 
     // Observe elements for animation
-    const animatedElements = document.querySelectorAll('.feature-card, .testimonial-card, .pricing-card, .video-card');
+    const animatedElements = document.querySelectorAll('.feature-card, .testimonial-card, .pricing-card, .video-card, .game-card');
     animatedElements.forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(30px)';
@@ -493,7 +493,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Add hover effects to cards
-    const cards = document.querySelectorAll('.feature-card, .testimonial-card, .pricing-card, .video-card');
+    const cards = document.querySelectorAll('.feature-card, .testimonial-card, .pricing-card, .video-card, .game-card');
     cards.forEach(card => {
         card.addEventListener('mouseenter', function() {
             this.style.transform = 'translateY(-10px) scale(1.02)';
@@ -501,6 +501,43 @@ document.addEventListener('DOMContentLoaded', function() {
         
         card.addEventListener('mouseleave', function() {
             this.style.transform = 'translateY(0) scale(1)';
+        });
+    });
+
+    // Game cards functionality
+    const gameCards = document.querySelectorAll('.game-card');
+    gameCards.forEach(card => {
+        const playButton = card.querySelector('.play-button');
+        
+        if (playButton) {
+            playButton.addEventListener('click', function(e) {
+                e.stopPropagation();
+                
+                // Add click animation
+                this.style.transform = 'scale(0.9)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1.1)';
+                }, 150);
+                
+                // Get game name
+                const gameName = card.querySelector('h3').textContent;
+                
+                // Show notification
+                showNotification(`Escolha um plano para jogar ${gameName}!`, 'info');
+                
+                // Scroll to plans section
+                setTimeout(() => {
+                    document.querySelector('#plans').scrollIntoView({ 
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }, 500);
+            });
+        }
+        
+        // Card click to scroll to plans
+        card.addEventListener('click', function() {
+            document.querySelector('#plans').scrollIntoView({ behavior: 'smooth' });
         });
     });
 
