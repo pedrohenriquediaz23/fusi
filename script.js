@@ -790,3 +790,44 @@ const additionalStyles = `
 const styleSheet = document.createElement('style');
 styleSheet.textContent = additionalStyles;
 document.head.appendChild(styleSheet);
+
+// Timer de Promoção - Reinicia sempre que a página é recarregada
+function startPromoTimer() {
+    // Sempre inicia com 3 dias completos
+    let totalSeconds = 3 * 24 * 60 * 60; // 3 dias em segundos
+    
+    function updateTimer() {
+        const days = Math.floor(totalSeconds / (24 * 60 * 60));
+        const hours = Math.floor((totalSeconds % (24 * 60 * 60)) / (60 * 60));
+        const minutes = Math.floor((totalSeconds % (60 * 60)) / 60);
+        const seconds = totalSeconds % 60;
+        
+        const daysElement = document.getElementById('days');
+        const hoursElement = document.getElementById('hours');
+        const minutesElement = document.getElementById('minutes');
+        const secondsElement = document.getElementById('seconds');
+        
+        if (daysElement) daysElement.textContent = days.toString().padStart(2, '0');
+        if (hoursElement) hoursElement.textContent = hours.toString().padStart(2, '0');
+        if (minutesElement) minutesElement.textContent = minutes.toString().padStart(2, '0');
+        if (secondsElement) secondsElement.textContent = seconds.toString().padStart(2, '0');
+        
+        if (totalSeconds > 0) {
+            totalSeconds--;
+        } else {
+            // Quando chegar a zero, reinicia com 3 dias
+            totalSeconds = 3 * 24 * 60 * 60;
+        }
+    }
+    
+    // Atualiza imediatamente
+    updateTimer();
+    
+    // Atualiza a cada segundo
+    setInterval(updateTimer, 1000);
+}
+
+// Inicia o timer quando a página carrega
+document.addEventListener('DOMContentLoaded', function() {
+    startPromoTimer();
+});

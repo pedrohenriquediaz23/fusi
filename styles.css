@@ -1343,6 +1343,533 @@ html {
     scroll-behavior: smooth;
 }
 
+/* Responsive Design - Mobile First Approach */
+
+/* Extra Small Devices (phones, 320px and up) */
+@media (max-width: 480px) {
+    .container {
+        padding: 0 10px;
+    }
+    
+    .nav-container {
+        padding: 0 10px;
+    }
+    
+    .hero-content {
+        padding: 0 10px;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-description {
+        font-size: 1rem;
+    }
+    
+    .primary-button,
+    .secondary-button {
+        padding: 12px 20px;
+        font-size: 1rem;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+    }
+    
+    .feature-card,
+    .testimonial-card,
+    .pricing-card {
+        padding: 20px 15px;
+    }
+    
+    .download-card {
+        padding: 20px 15px;
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .download-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+    
+    .platform-segment-control {
+        flex-direction: column;
+        max-width: 280px;
+    }
+    
+    .platform-option {
+        min-width: auto;
+        width: 100%;
+        padding: 10px 12px;
+        font-size: 0.85rem;
+    }
+}
+
+/* Small Devices (landscape phones, 576px and up) */
+@media (min-width: 481px) and (max-width: 576px) {
+    .container {
+        padding: 0 15px;
+    }
+    
+    .hero-title {
+        font-size: 3rem;
+    }
+    
+    .features-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .pricing-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .videos-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}
+
+/* Medium Devices (tablets, 768px and up) */
+@media (min-width: 577px) and (max-width: 768px) {
+    .nav-menu {
+        display: none;
+    }
+    
+    .hamburger {
+        display: flex;
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+    }
+    
+    .primary-button,
+    .secondary-button {
+        width: 100%;
+        max-width: 350px;
+        justify-content: center;
+    }
+    
+    .features-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+    
+    .testimonials-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+    
+    .pricing-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+    
+    .pricing-tabs {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .segment-control {
+        flex-direction: column;
+        width: 100%;
+        max-width: 350px;
+    }
+    
+    .segment-option {
+        min-width: auto;
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .segment-control input[type="radio"][value="weekly"]:checked ~ .segment-indicator {
+        transform: translateY(calc(100% + 6px));
+        width: calc(100% - 12px);
+    }
+    
+    .segment-control input[type="radio"][value="monthly"]:checked ~ .segment-indicator {
+        transform: translateY(calc(200% + 12px));
+        width: calc(100% - 12px);
+    }
+    
+    .videos-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+    
+    .video-thumbnail {
+        height: 250px;
+    }
+    
+    .video-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        z-index: 10000;
+        background: rgba(0, 0, 0, 0.95);
+        padding: 20px;
+    }
+    
+    .video-player {
+        max-width: 90vw;
+        max-height: 90vh;
+        margin: auto;
+    }
+    
+    .cta-content {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        text-align: center;
+    }
+    
+    .floating-card {
+        display: none;
+    }
+}
+
+/* Large Devices (desktops, 992px and up) */
+@media (min-width: 769px) and (max-width: 992px) {
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+    
+    .testimonials-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+    
+    .pricing-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+    
+    .videos-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+    
+    .downloads-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .support-options {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 25px;
+    }
+}
+
+/* Extra Large Devices (large desktops, 1200px and up) */
+@media (min-width: 993px) and (max-width: 1200px) {
+    .features-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+    }
+    
+    .testimonials-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+    }
+    
+    .pricing-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+    }
+    
+    .videos-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 30px;
+    }
+    
+    .downloads-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+    }
+}
+
+/* Ultra Wide Screens (1400px and up) */
+@media (min-width: 1400px) {
+    .container {
+        max-width: 1400px;
+    }
+    
+    .nav-container {
+        max-width: 1400px;
+    }
+    
+    .hero-title {
+        font-size: 5rem;
+    }
+    
+    .features-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+    }
+    
+    .testimonials-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+    }
+    
+    .pricing-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+    }
+    
+    .videos-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 40px;
+    }
+    
+    .downloads-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 50px;
+    }
+}
+
+/* TV and Large Display Support (1920px and up) */
+@media (min-width: 1920px) {
+    .container {
+        max-width: 1600px;
+    }
+    
+    .nav-container {
+        max-width: 1600px;
+    }
+    
+    .hero-title {
+        font-size: 6rem;
+    }
+    
+    .hero-description {
+        font-size: 1.4rem;
+    }
+    
+    .section-title {
+        font-size: 3.5rem;
+    }
+    
+    .section-subtitle {
+        font-size: 1.3rem;
+    }
+    
+    .feature-card,
+    .testimonial-card,
+    .pricing-card {
+        padding: 50px 40px;
+    }
+    
+    .download-card {
+        padding: 50px 40px;
+    }
+    
+    .primary-button,
+    .secondary-button {
+        padding: 20px 40px;
+        font-size: 1.2rem;
+    }
+}
+
+/* Landscape Orientation */
+@media (orientation: landscape) and (max-height: 600px) {
+    .hero {
+        min-height: 80vh;
+    }
+    
+    .downloads-hero {
+        min-height: 50vh;
+    }
+    
+    .floating-card {
+        display: none;
+    }
+}
+
+/* High DPI Displays */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .hero-title,
+    .section-title {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+}
+
+/* Print Styles */
+@media print {
+    .navbar,
+    .hero-buttons,
+    .download-buttons,
+    .checkout-modal,
+    .video-overlay {
+        display: none !important;
+    }
+    
+    .hero {
+        min-height: auto;
+        padding: 20px 0;
+    }
+    
+    .section-title {
+        color: #000 !important;
+    }
+    
+    .feature-card,
+    .testimonial-card,
+    .pricing-card {
+        break-inside: avoid;
+        box-shadow: none;
+        border: 1px solid #ccc;
+    }
+}
+
+/* Timer de Promoção */
+.promo-timer {
+    position: relative;
+    background: rgba(0, 0, 0, 0.8);
+    border: 2px solid #3b82f6;
+    border-radius: 15px;
+    padding: 30px;
+    margin-bottom: 50px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+.promo-banner {
+    position: absolute;
+    top: -15px;
+    left: 20px;
+    background: #3b82f6;
+    color: #fff;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4);
+}
+
+.timer-container {
+    text-align: center;
+    padding-top: 10px;
+}
+
+.countdown-timer {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #3b82f6;
+    font-family: 'Inter', sans-serif;
+    text-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+    margin-bottom: 15px;
+    letter-spacing: 2px;
+}
+
+.countdown-timer span {
+    display: inline-block;
+    min-width: 50px;
+    text-align: center;
+}
+
+.promo-text {
+    color: #3b82f6;
+    font-size: 1rem;
+    font-weight: 500;
+    opacity: 0.9;
+    text-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
+}
+
+/* Animação do timer */
+@keyframes timerPulse {
+    0%, 100% {
+        transform: scale(1);
+        text-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+    }
+    50% {
+        transform: scale(1.05);
+        text-shadow: 0 0 30px rgba(59, 130, 246, 0.8);
+    }
+}
+
+.countdown-timer {
+    animation: timerPulse 2s ease-in-out infinite;
+}
+
+/* Responsive Timer Styles */
+@media (max-width: 768px) {
+    .promo-timer {
+        padding: 20px;
+        margin-bottom: 30px;
+        max-width: 90%;
+    }
+    
+    .countdown-timer {
+        font-size: 2rem;
+        letter-spacing: 1px;
+    }
+    
+    .countdown-timer span {
+        min-width: 40px;
+    }
+    
+    .promo-banner {
+        font-size: 0.8rem;
+        padding: 6px 15px;
+    }
+    
+    .promo-text {
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .promo-timer {
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+    
+    .countdown-timer {
+        font-size: 1.5rem;
+        letter-spacing: 0.5px;
+    }
+    
+    .countdown-timer span {
+        min-width: 30px;
+    }
+    
+    .promo-banner {
+        font-size: 0.7rem;
+        padding: 5px 12px;
+        left: 15px;
+    }
+    
+    .promo-text {
+        font-size: 0.8rem;
+    }
+}
+
 /* Downloads Page Styles */
 .downloads-hero {
     min-height: 60vh;
