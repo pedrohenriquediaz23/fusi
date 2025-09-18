@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Downloads - Fusion Cloud Games</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-cloud"></i>
+                <span>Fusion Cloud Games</span>
+            </div>
+            <div class="nav-menu">
+                <a href="index.html#services" class="nav-link">Serviços</a>
+                <a href="downloads.html" class="nav-link active">Baixar</a>
+                <a href="index.html#contact" class="nav-link">Contato</a>
+                <a href="index.html#plans" class="nav-link">Planos</a>
+                <button class="cta-button" onclick="window.open('https://discord.gg/skmDUGqHpy', '_blank')">Começar Agora</button>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="downloads-hero">
+        <div class="hero-background">
+            <div class="gradient-overlay"></div>
+        </div>
+        <div class="hero-content">
+            <div class="hero-badge">
+                <i class="fas fa-download"></i>
+                <span>Downloads Oficiais</span>
+            </div>
+            <h1 class="hero-title">
+                <span class="gradient-text">CLIENTES</span>
+                <span class="hero-subtitle">PARA CLOUD GAMING</span>
+            </h1>
+            <p class="hero-description">
+                🎮 Baixe os clientes oficiais para acessar sua máquina virtual Azure e aproveitar 
+                a melhor experiência de cloud gaming com FiveM e outros jogos.
+            </p>
+        </div>
+    </section>
+
+    <!-- Downloads Section -->
+    <section class="downloads-section">
+        <div class="container">
+            <h2 class="section-title">CLIENTES DISPONÍVEIS</h2>
+            <p class="section-subtitle">Escolha o cliente ideal para sua plataforma e comece a jogar</p>
+            
+            <!-- Platform Selector -->
+            <div class="platform-selector">
+                <h3>Selecione sua plataforma:</h3>
+                <div class="platform-segment-control">
+                    <input type="radio" id="windows" name="platform" value="windows" checked>
+                    <label for="windows" class="platform-option">
+                        <i class="fab fa-windows"></i>
+                        <span>Windows</span>
+                    </label>
+                    
+                    <input type="radio" id="mac" name="platform" value="mac">
+                    <label for="mac" class="platform-option">
+                        <i class="fab fa-apple"></i>
+                        <span>macOS</span>
+                    </label>
+                    
+                    <input type="radio" id="linux" name="platform" value="linux">
+                    <label for="linux" class="platform-option">
+                        <i class="fab fa-linux"></i>
+                        <span>Linux</span>
+                    </label>
+                    
+                    <input type="radio" id="android" name="platform" value="android">
+                    <label for="android" class="platform-option">
+                        <i class="fab fa-android"></i>
+                        <span>Android</span>
+                    </label>
+                    
+                    <input type="radio" id="ios" name="platform" value="ios">
+                    <label for="ios" class="platform-option">
+                        <i class="fab fa-app-store-ios"></i>
+                        <span>iOS</span>
+                    </label>
+                    
+                    <div class="platform-indicator"></div>
+                </div>
+            </div>
+
+            <div class="downloads-grid">
+                <!-- Parsec -->
+                <div class="download-card">
+                    <div class="download-icon">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <div class="download-info">
+                        <h3>Parsec</h3>
+                        <p>Cliente oficial para streaming de jogos com baixa latência. Ideal para jogos competitivos e FiveM.</p>
+                        <div class="download-features">
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>Baixa latência</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>Alta qualidade</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>Suporte a controle</span>
+                            </div>
+                        </div>
+                        <div class="platform-info">
+                            <div class="platform-status" id="parsec-status">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Disponível para Windows</span>
+                            </div>
+                        </div>
+                        <div class="download-buttons">
+                            <a href="https://parsec.app/downloads" target="_blank" class="download-btn primary" id="parsec-download">
+                                <i class="fas fa-download"></i>
+                                <span id="parsec-text">Baixar para Windows</span>
+                            </a>
+                            <button class="download-btn secondary" onclick="showTutorial('parsec')">
+                                <i class="fas fa-play"></i>
+                                Ver Tutorial
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Moonlight -->
+                <div class="download-card">
+                    <div class="download-icon">
+                        <i class="fas fa-moon"></i>
+                    </div>
+                    <div class="download-info">
+                        <h3>Moonlight</h3>
+                        <p>Cliente open-source para streaming de jogos. Excelente para dispositivos móveis e tablets.</p>
+                        <div class="download-features">
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>Multiplataforma</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>Gratuito</span>
+                            </div>
+                            <div class="feature-item">
+                                <i class="fas fa-check"></i>
+                                <span>Touch controls</span>
+                            </div>
+                        </div>
+                        <div class="platform-info">
+                            <div class="platform-status" id="moonlight-status">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Disponível para Windows</span>
+                            </div>
+                        </div>
+                        <div class="download-buttons">
+                            <a href="https://moonlight-stream.org/" target="_blank" class="download-btn primary" id="moonlight-download">
+                                <i class="fas fa-download"></i>
+                                <span id="moonlight-text">Baixar para Windows</span>
+                            </a>
+                            <button class="download-btn secondary" onclick="showTutorial('moonlight')">
+                                <i class="fas fa-play"></i>
+                                Ver Tutorial
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tutorial Section -->
+    <section class="tutorial-section">
+        <div class="container">
+            <h2 class="section-title">COMO CONECTAR</h2>
+            <p class="section-subtitle">Siga estes passos para acessar sua máquina virtual</p>
+            
+            <div class="tutorial-tabs">
+                <button class="tutorial-tab active" data-tutorial="parsec">
+                    <i class="fas fa-gamepad"></i>
+                    <span>Parsec</span>
+                </button>
+                <button class="tutorial-tab" data-tutorial="moonlight">
+                    <i class="fas fa-moon"></i>
+                    <span>Moonlight</span>
+                </button>
+            </div>
+
+            <!-- Parsec Tutorial -->
+            <div class="tutorial-content active" id="parsec-tutorial">
+                <div class="tutorial-steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>Baixe e Instale o Parsec</h3>
+                            <p>Faça o download do Parsec no site oficial e instale em seu dispositivo.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>Crie sua Conta</h3>
+                            <p>Registre-se gratuitamente no Parsec ou faça login se já tiver uma conta.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>Receba as Credenciais</h3>
+                            <p>Após adquirir seu plano, você receberá as credenciais de acesso por email.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h3>Conecte-se</h3>
+                            <p>Use o código de acesso fornecido para conectar diretamente à sua máquina virtual.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Moonlight Tutorial -->
+            <div class="tutorial-content" id="moonlight-tutorial">
+                <div class="tutorial-steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>Baixe o Moonlight</h3>
+                            <p>Instale o Moonlight no seu dispositivo (Windows, Android, iOS, etc.).</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>Configure a Conexão</h3>
+                            <p>Adicione o IP da máquina virtual e configure as credenciais fornecidas.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>Teste a Conexão</h3>
+                            <p>Verifique se a conexão está estável e com boa qualidade de imagem.</p>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h3>Comece a Jogar</h3>
+                            <p>Abra o FiveM ou seu jogo favorito e aproveite a experiência de cloud gaming!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Support Section -->
+    <section class="support-section">
+        <div class="container">
+            <h2 class="section-title">PRECISA DE AJUDA?</h2>
+            <p class="section-subtitle">Nossa equipe está pronta para te ajudar com qualquer dúvida</p>
+            
+            <div class="support-options">
+                <div class="support-card">
+                    <div class="support-icon">
+                        <i class="fab fa-discord"></i>
+                    </div>
+                    <h3>Discord</h3>
+                    <p>Entre em nosso servidor Discord para suporte em tempo real</p>
+                    <button class="support-btn" onclick="window.open('https://discord.gg/skmDUGqHpy', '_blank')">
+                        <i class="fab fa-discord"></i>
+                        Entrar no Discord
+                    </button>
+                </div>
+                
+                <div class="support-card">
+                    <div class="support-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <h3>Email</h3>
+                    <p>Envie suas dúvidas por email e receba resposta em até 2 horas</p>
+                    <button class="support-btn" onclick="window.location.href='index.html#contact'">
+                        <i class="fas fa-envelope"></i>
+                        Enviar Email
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-cloud"></i>
+                        <span>Fusion Cloud Games</span>
+                    </div>
+                    <p>Especialistas em infraestrutura cloud no Azure para gaming e servidores FiveM.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Serviços</h4>
+                    <ul>
+                        <li><a href="index.html#services">Servidores FiveM</a></li>
+                        <li><a href="index.html#services">Hospedagem Gaming</a></li>
+                        <li><a href="index.html#services">Proteção DDoS</a></li>
+                        <li><a href="index.html#services">Suporte 24/7</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Downloads</h4>
+                    <ul>
+                        <li><a href="#parsec">Parsec</a></li>
+                        <li><a href="#moonlight">Moonlight</a></li>
+                        <li><a href="#tutorial">Tutoriais</a></li>
+                        <li><a href="#support">Suporte</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h4>Suporte</h4>
+                    <ul>
+                        <li><a href="https://discord.gg/skmDUGqHpy" target="_blank">Discord</a></li>
+                        <li><a href="index.html#contact">Contato</a></li>
+                        <li><a href="index.html#plans">Planos</a></li>
+                        <li><a href="downloads.html">Downloads</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 Fusion Cloud Games. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Platform data
+        const platformData = {
+            windows: {
+                name: 'Windows',
+                parsec: { available: true, url: 'https://parsec.app/downloads', text: 'Baixar para Windows' },
+                moonlight: { available: true, url: 'https://moonlight-stream.org/', text: 'Baixar para Windows' }
+            },
+            mac: {
+                name: 'macOS',
+                parsec: { available: true, url: 'https://parsec.app/downloads', text: 'Baixar para macOS' },
+                moonlight: { available: true, url: 'https://moonlight-stream.org/', text: 'Baixar para macOS' }
+            },
+            linux: {
+                name: 'Linux',
+                parsec: { available: false, url: '#', text: 'Não disponível' },
+                moonlight: { available: true, url: 'https://moonlight-stream.org/', text: 'Baixar para Linux' }
+            },
+            android: {
+                name: 'Android',
+                parsec: { available: true, url: 'https://play.google.com/store/apps/details?id=tv.parsec.client', text: 'Baixar no Google Play' },
+                moonlight: { available: true, url: 'https://play.google.com/store/apps/details?id=com.limelight', text: 'Baixar no Google Play' }
+            },
+            ios: {
+                name: 'iOS',
+                parsec: { available: false, url: '#', text: 'Não disponível' },
+                moonlight: { available: true, url: 'https://apps.apple.com/app/moonlight-game-streaming/id1000551566', text: 'Baixar na App Store' }
+            }
+        };
+
+        // Platform selector functionality
+        const platformInputs = document.querySelectorAll('input[name="platform"]');
+        
+        platformInputs.forEach(input => {
+            input.addEventListener('change', function() {
+                const selectedPlatform = this.value;
+                updatePlatformInfo(selectedPlatform);
+            });
+        });
+
+        function updatePlatformInfo(platform) {
+            const data = platformData[platform];
+            
+            // Update Parsec
+            const parsecStatus = document.getElementById('parsec-status');
+            const parsecDownload = document.getElementById('parsec-download');
+            const parsecText = document.getElementById('parsec-text');
+            
+            if (data.parsec.available) {
+                parsecStatus.innerHTML = '<i class="fas fa-check-circle"></i><span>Disponível para ' + data.name + '</span>';
+                parsecStatus.style.background = 'rgba(0, 212, 255, 0.1)';
+                parsecStatus.style.borderColor = 'rgba(0, 212, 255, 0.3)';
+                parsecStatus.style.color = 'var(--primary-color)';
+                parsecDownload.href = data.parsec.url;
+                parsecDownload.style.opacity = '1';
+                parsecDownload.style.pointerEvents = 'auto';
+                parsecText.textContent = data.parsec.text;
+            } else {
+                parsecStatus.innerHTML = '<i class="fas fa-times-circle"></i><span>Não disponível para ' + data.name + '</span>';
+                parsecStatus.style.background = 'rgba(239, 68, 68, 0.1)';
+                parsecStatus.style.borderColor = 'rgba(239, 68, 68, 0.3)';
+                parsecStatus.style.color = '#ef4444';
+                parsecDownload.href = '#';
+                parsecDownload.style.opacity = '0.5';
+                parsecDownload.style.pointerEvents = 'none';
+                parsecText.textContent = data.parsec.text;
+            }
+            
+            // Update Moonlight
+            const moonlightStatus = document.getElementById('moonlight-status');
+            const moonlightDownload = document.getElementById('moonlight-download');
+            const moonlightText = document.getElementById('moonlight-text');
+            
+            if (data.moonlight.available) {
+                moonlightStatus.innerHTML = '<i class="fas fa-check-circle"></i><span>Disponível para ' + data.name + '</span>';
+                moonlightStatus.style.background = 'rgba(0, 212, 255, 0.1)';
+                moonlightStatus.style.borderColor = 'rgba(0, 212, 255, 0.3)';
+                moonlightStatus.style.color = 'var(--primary-color)';
+                moonlightDownload.href = data.moonlight.url;
+                moonlightDownload.style.opacity = '1';
+                moonlightDownload.style.pointerEvents = 'auto';
+                moonlightText.textContent = data.moonlight.text;
+            } else {
+                moonlightStatus.innerHTML = '<i class="fas fa-times-circle"></i><span>Não disponível para ' + data.name + '</span>';
+                moonlightStatus.style.background = 'rgba(239, 68, 68, 0.1)';
+                moonlightStatus.style.borderColor = 'rgba(239, 68, 68, 0.3)';
+                moonlightStatus.style.color = '#ef4444';
+                moonlightDownload.href = '#';
+                moonlightDownload.style.opacity = '0.5';
+                moonlightDownload.style.pointerEvents = 'none';
+                moonlightText.textContent = data.moonlight.text;
+            }
+        }
+
+        // Tutorial tabs functionality
+        const tutorialTabs = document.querySelectorAll('.tutorial-tab');
+        const tutorialContents = document.querySelectorAll('.tutorial-content');
+
+        tutorialTabs.forEach(tab => {
+            tab.addEventListener('click', function() {
+                const tutorialType = this.getAttribute('data-tutorial');
+                
+                // Remove active class from all tabs and contents
+                tutorialTabs.forEach(t => t.classList.remove('active'));
+                tutorialContents.forEach(c => c.classList.remove('active'));
+                
+                // Add active class to clicked tab and corresponding content
+                this.classList.add('active');
+                document.getElementById(`${tutorialType}-tutorial`).classList.add('active');
+            });
+        });
+
+        function showTutorial(type) {
+            // Remove active class from all tabs and contents
+            tutorialTabs.forEach(t => t.classList.remove('active'));
+            tutorialContents.forEach(c => c.classList.remove('active'));
+            
+            // Add active class to selected tutorial
+            document.querySelector(`[data-tutorial="${type}"]`).classList.add('active');
+            document.getElementById(`${type}-tutorial`).classList.add('active');
+            
+            // Scroll to tutorial section
+            document.querySelector('.tutorial-section').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Initialize platform info on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            updatePlatformInfo('windows');
+        });
+    </script>
+</body>
+</html>
