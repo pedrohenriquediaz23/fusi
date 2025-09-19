@@ -472,14 +472,37 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }, observerOptions);
 
-    // Observe elements for animation
-    const animatedElements = document.querySelectorAll('.feature-card, .testimonial-card, .pricing-card, .video-card, .game-card');
+    // Special observer for pricing cards with slide animation
+    const pricingObserverOptions = {
+        threshold: 0.2,
+        rootMargin: '0px 0px -100px 0px'
+    };
+
+    const pricingObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const pricingCards = entry.target.querySelectorAll('.pricing-card');
+                pricingCards.forEach(card => {
+                    card.classList.add('animate-in');
+                });
+            }
+        });
+    }, pricingObserverOptions);
+
+    // Observe elements for animation (excluding pricing cards)
+    const animatedElements = document.querySelectorAll('.feature-card, .testimonial-card, .video-card, .game-card');
     animatedElements.forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(30px)';
         el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         observer.observe(el);
     });
+
+    // Observe pricing section for slide animation
+    const pricingSection = document.querySelector('.pricing');
+    if (pricingSection) {
+        pricingObserver.observe(pricingSection);
+    }
 
     // Parallax effect for floating elements
     window.addEventListener('scroll', function() {
