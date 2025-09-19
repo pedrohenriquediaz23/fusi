@@ -1430,6 +1430,17 @@ html {
         padding: 10px 12px;
         font-size: 0.85rem;
     }
+    
+    .popular-game-badge {
+        font-size: 0.75rem;
+        padding: 5px 12px;
+        min-width: 100px;
+        top: -6px;
+    }
+    
+    .popular-game {
+        margin-top: 12px;
+    }
 }
 
 /* Small Devices (landscape phones, 576px and up) */
@@ -1469,6 +1480,28 @@ html {
     .games-grid {
         grid-template-columns: 1fr;
         gap: 20px;
+    }
+    
+    .game-stats {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+    
+    .stat-item {
+        font-size: 0.8rem;
+        padding: 6px 10px;
+    }
+    
+    .popular-game-badge {
+        font-size: 0.8rem;
+        padding: 6px 16px;
+        min-width: 120px;
+        top: -8px;
+    }
+    
+    .popular-game {
+        margin-top: 15px;
     }
 }
 
@@ -1932,6 +1965,71 @@ html {
     padding: 100px 0;
     background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
     position: relative;
+}
+
+/* Popular Game Badge */
+.popular-game-badge {
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--gradient-secondary);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    z-index: 10;
+    box-shadow: 0 4px 15px rgba(245, 158, 11, 0.4);
+    animation: pulse 2s infinite;
+    text-align: center;
+    white-space: nowrap;
+    min-width: 140px;
+}
+
+.popular-game {
+    border-color: var(--primary-color);
+    box-shadow: var(--shadow-glow);
+    position: relative;
+    margin-top: 20px;
+}
+
+.popular-game:hover {
+    box-shadow: 0 0 50px rgba(0, 212, 255, 0.6);
+}
+
+/* Game Stats */
+.game-stats {
+    display: flex;
+    gap: 20px;
+    margin: 15px 0;
+    justify-content: center;
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(0, 212, 255, 0.1);
+    padding: 8px 12px;
+    border-radius: 15px;
+    border: 1px solid rgba(0, 212, 255, 0.3);
+    color: var(--primary-color);
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.stat-item i {
+    color: var(--primary-color);
+    font-size: 1rem;
+}
+
+/* Popular Tags */
+.tag.popular {
+    background: rgba(0, 212, 255, 0.2);
+    color: var(--primary-color);
+    border: 1px solid rgba(0, 212, 255, 0.4);
+    font-weight: 600;
 }
 
 .games-grid {
