@@ -472,25 +472,32 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }, observerOptions);
 
-    // Special observer for pricing cards with slide animation
-    const pricingObserverOptions = {
-        threshold: 0.2,
+    // Special observer for games and pricing cards with slide animation from left
+    const slideObserverOptions = {
+        threshold: 0.1,
         rootMargin: '0px 0px -100px 0px'
     };
 
-    const pricingObserver = new IntersectionObserver(function(entries) {
+    const slideObserver = new IntersectionObserver(function(entries) {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                const pricingCards = entry.target.querySelectorAll('.pricing-card');
-                pricingCards.forEach(card => {
+                // Add animation class when entering view
+                const cards = entry.target.querySelectorAll('.game-card, .pricing-card');
+                cards.forEach(card => {
                     card.classList.add('animate-in');
+                });
+            } else {
+                // Remove animation class when leaving view to reset for next time
+                const cards = entry.target.querySelectorAll('.game-card, .pricing-card');
+                cards.forEach(card => {
+                    card.classList.remove('animate-in');
                 });
             }
         });
-    }, pricingObserverOptions);
+    }, slideObserverOptions);
 
-    // Observe elements for animation (excluding pricing cards)
-    const animatedElements = document.querySelectorAll('.feature-card, .testimonial-card, .video-card, .game-card');
+    // Observe elements for animation (excluding games and pricing cards)
+    const animatedElements = document.querySelectorAll('.feature-card, .testimonial-card, .video-card');
     animatedElements.forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(30px)';
@@ -498,10 +505,16 @@ document.addEventListener('DOMContentLoaded', function() {
         observer.observe(el);
     });
 
-    // Observe pricing section for slide animation
+    // Observe games and pricing sections for slide animation from left
+    const gamesSection = document.querySelector('.games');
     const pricingSection = document.querySelector('.pricing');
+    
+    if (gamesSection) {
+        slideObserver.observe(gamesSection);
+    }
+    
     if (pricingSection) {
-        pricingObserver.observe(pricingSection);
+        slideObserver.observe(pricingSection);
     }
 
     // Parallax effect for floating elements
