@@ -904,3 +904,596 @@ function startPromoTimer() {
 document.addEventListener('DOMContentLoaded', function() {
     startPromoTimer();
 });
+
+// Login System
+document.addEventListener('DOMContentLoaded', function() {
+    const loginModal = document.getElementById('login-modal');
+    const loginBtn = document.getElementById('login-btn');
+    const loginClose = document.querySelector('.login-close');
+    const loginTabs = document.querySelectorAll('.login-tab');
+    const loginForms = document.querySelectorAll('.login-form');
+    const loginForm = document.getElementById('login-form');
+    const registerForm = document.getElementById('register-form');
+    
+    // Initialize login button behavior
+    if (loginBtn) {
+        // Initial behavior will be set by updateLoginState
+        loginBtn.onclick = function(e) {
+            e.preventDefault();
+            openLoginModal();
+        };
+    }
+    
+    // Close login modal
+    if (loginClose) {
+        loginClose.addEventListener('click', closeLoginModal);
+    }
+    
+    // Close modal when clicking overlay
+    if (loginModal) {
+        loginModal.addEventListener('click', function(e) {
+            if (e.target === loginModal || e.target.classList.contains('login-overlay')) {
+                closeLoginModal();
+            }
+        });
+    }
+    
+    // Tab switching
+    loginTabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+            const targetTab = this.getAttribute('data-tab');
+            switchLoginTab(targetTab);
+        });
+    });
+    
+    // Login form submission
+    if (loginForm) {
+        loginForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            handleLogin();
+        });
+    }
+    
+    // Register form submission
+    if (registerForm) {
+        registerForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            handleRegister();
+        });
+    }
+    
+    
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && loginModal && loginModal.classList.contains('active')) {
+            closeLoginModal();
+        }
+    });
+    
+    function openLoginModal() {
+        loginModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+        
+        // Reset forms
+        if (loginForm) loginForm.reset();
+        if (registerForm) registerForm.reset();
+        
+        // Switch to login tab by default
+        switchLoginTab('login');
+    }
+    
+    function closeLoginModal() {
+        loginModal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+    
+    function switchLoginTab(tab) {
+        // Update tab buttons
+        loginTabs.forEach(t => t.classList.remove('active'));
+        const activeTab = document.querySelector(`[data-tab="${tab}"]`);
+        if (activeTab) {
+            activeTab.classList.add('active');
+        }
+        
+        // Update forms
+        loginForms.forEach(form => form.classList.remove('active'));
+        const activeForm = document.getElementById(`${tab}-form`);
+        if (activeForm) {
+            activeForm.classList.add('active');
+        }
+    }
+    
+    function handleLogin() {
+        const email = document.getElementById('login-email').value;
+        const password = document.getElementById('login-password').value;
+        const rememberMe = document.getElementById('remember-me').checked;
+        
+        // Validation
+        if (!email || !password) {
+            showNotification('Por favor, preencha todos os campos.', 'error');
+            return;
+        }
+        
+        if (!isValidEmail(email)) {
+            showNotification('Por favor, insira um email válido.', 'error');
+            return;
+        }
+        
+        // Check admin login
+        if (email === 'admin@admin.com' && password === 'admin123') {
+            showNotification('Login de administrador realizado com sucesso!', 'success');
+            updateLoginState(true, email, 'Administrador', 'admin');
+            setTimeout(() => {
+                closeLoginModal();
+            }, 1500);
+            return;
+        }
+        
+        // Check user login
+        const users = getUsers();
+        const user = users.find(u => u.email === email && u.password === password);
+        
+        if (!user) {
+            showNotification('Email ou senha incorretos.', 'error');
+            return;
+        }
+        
+        showNotification('Login realizado com sucesso! Bem-vindo à plataforma.', 'success');
+        updateLoginState(true, user.email, user.name, user.role);
+        
+        setTimeout(() => {
+            closeLoginModal();
+        }, 1500);
+    }
+    
+    // User management functions
+    function getUsers() {
+        const users = localStorage.getItem('users');
+        return users ? JSON.parse(users) : [];
+    }
+    
+    function saveUsers(users) {
+        localStorage.setItem('users', JSON.stringify(users));
+    }
+    
+    function handleRegister() {
+        const name = document.getElementById('register-name').value;
+        const email = document.getElementById('register-email').value;
+        const password = document.getElementById('register-password').value;
+        const confirmPassword = document.getElementById('register-confirm').value;
+        const acceptTerms = document.getElementById('accept-terms').checked;
+        
+        // Validation
+        if (!name || !email || !password || !confirmPassword) {
+            showNotification('Por favor, preencha todos os campos.', 'error');
+            return;
+        }
+        
+        if (!isValidEmail(email)) {
+            showNotification('Por favor, insira um email válido.', 'error');
+            return;
+        }
+        
+        if (password.length < 6) {
+            showNotification('A senha deve ter pelo menos 6 caracteres.', 'error');
+            return;
+        }
+        
+        if (password !== confirmPassword) {
+            showNotification('As senhas não coincidem.', 'error');
+            return;
+        }
+        
+        if (!acceptTerms) {
+            showNotification('Você deve aceitar os termos de uso.', 'error');
+            return;
+        }
+        
+        // Check if user already exists
+        const users = getUsers();
+        if (users.find(user => user.email === email)) {
+            showNotification('Este email já está cadastrado.', 'error');
+            return;
+        }
+        
+        // Create new user
+        const newUser = {
+            id: Date.now().toString(),
+            name: name,
+            email: email,
+            password: password, // In production, this should be hashed
+            role: 'user',
+            createdAt: new Date().toISOString()
+        };
+        
+        // Save user
+        users.push(newUser);
+        saveUsers(users);
+        
+        showNotification('Cadastro realizado com sucesso! Bem-vindo à plataforma.', 'success');
+        updateLoginState(true, email, name, 'user');
+        
+        setTimeout(() => {
+            closeLoginModal();
+        }, 1500);
+    }
+    
+    
+    
+    function updateLoginState(isLoggedIn, email, name = null, role = 'user') {
+        const loginBtn = document.getElementById('login-btn');
+        
+        if (isLoggedIn) {
+            // Update button to show user is logged in
+            loginBtn.innerHTML = `
+                <i class="fas fa-user"></i>
+                ${name || email.split('@')[0]}
+            `;
+            loginBtn.classList.add('logged-in');
+            
+            // Add click handler to show user menu or logout
+            loginBtn.onclick = function(e) {
+                e.preventDefault();
+                showUserMenu(email, name, role);
+            };
+            
+            // Store login state
+            localStorage.setItem('userLoggedIn', 'true');
+            localStorage.setItem('userEmail', email);
+            localStorage.setItem('userRole', role);
+            if (name) localStorage.setItem('userName', name);
+            
+        } else {
+            // Reset button to login state
+            loginBtn.innerHTML = 'Começar Agora';
+            loginBtn.classList.remove('logged-in');
+            loginBtn.onclick = function(e) {
+                e.preventDefault();
+                openLoginModal();
+            };
+            
+            // Clear login state
+            localStorage.removeItem('userLoggedIn');
+            localStorage.removeItem('userEmail');
+            localStorage.removeItem('userName');
+            localStorage.removeItem('userRole');
+        }
+    }
+    
+    function showUserMenu(email, name, role = 'user') {
+        const userMenu = document.createElement('div');
+        userMenu.className = 'user-menu';
+        
+        let adminActions = '';
+        if (role === 'admin') {
+            adminActions = `
+                <button class="user-action-btn admin-btn" onclick="showAdminPanel()">
+                    <i class="fas fa-cog"></i>
+                    Painel Admin
+                </button>
+            `;
+        }
+        
+        userMenu.innerHTML = `
+            <div class="user-info">
+                <div class="user-avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="user-details">
+                    <h4>${name || email.split('@')[0]}</h4>
+                    <p>${email}</p>
+                    ${role === 'admin' ? '<p class="user-role">Administrador</p>' : ''}
+                </div>
+            </div>
+            <div class="user-actions">
+                ${adminActions}
+                <button class="user-action-btn" onclick="window.location.href='plans.html'">
+                    <i class="fas fa-shopping-cart"></i>
+                    Meus Planos
+                </button>
+                <button class="user-action-btn" onclick="window.location.href='#contact'">
+                    <i class="fas fa-headset"></i>
+                    Suporte
+                </button>
+                <button class="user-action-btn" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i>
+                    Sair
+                </button>
+            </div>
+        `;
+        
+        // Add user menu styles
+        userMenu.style.cssText = `
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            padding: 20px;
+            min-width: 250px;
+            box-shadow: var(--shadow-card);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            margin-top: 10px;
+        `;
+        
+        // Position relative to login button
+        const loginBtn = document.getElementById('login-btn');
+        loginBtn.style.position = 'relative';
+        loginBtn.appendChild(userMenu);
+        
+        // Close menu when clicking outside
+        setTimeout(() => {
+            document.addEventListener('click', function closeMenu(e) {
+                if (!userMenu.contains(e.target) && e.target !== loginBtn) {
+                    userMenu.remove();
+                    document.removeEventListener('click', closeMenu);
+                }
+            });
+        }, 100);
+    }
+    
+    function logout() {
+        showNotification('Logout realizado com sucesso!', 'info');
+        updateLoginState(false);
+    }
+    
+    function isValidEmail(email) {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+    
+    // Check if user is already logged in on page load
+    function checkLoginState() {
+        const isLoggedIn = localStorage.getItem('userLoggedIn') === 'true';
+        const email = localStorage.getItem('userEmail');
+        const name = localStorage.getItem('userName');
+        const role = localStorage.getItem('userRole') || 'user';
+        
+        if (isLoggedIn && email) {
+            updateLoginState(true, email, name, role);
+        }
+    }
+    
+    // User management functions
+    function getUsers() {
+        const users = localStorage.getItem('users');
+        return users ? JSON.parse(users) : [];
+    }
+    
+    function saveUsers(users) {
+        localStorage.setItem('users', JSON.stringify(users));
+    }
+    
+    function showAdminPanel() {
+        const users = getUsers();
+        const adminPanel = document.createElement('div');
+        adminPanel.className = 'admin-panel';
+        adminPanel.innerHTML = `
+            <div class="admin-panel-content">
+                <div class="admin-header">
+                    <h2>Painel Administrativo</h2>
+                    <button class="admin-close" onclick="this.parentElement.parentElement.parentElement.remove()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="admin-stats">
+                    <div class="stat-card">
+                        <h3>${users.length}</h3>
+                        <p>Usuários Cadastrados</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>${users.filter(u => u.role === 'admin').length}</h3>
+                        <p>Administradores</p>
+                    </div>
+                </div>
+                <div class="admin-actions">
+                    <button class="btn btn-primary" onclick="showCreateUserForm()">
+                        <i class="fas fa-user-plus"></i>
+                        Criar Novo Usuário
+                    </button>
+                </div>
+                <div class="admin-users">
+                    <h3>Lista de Usuários</h3>
+                    <div class="users-list">
+                        ${users.map(user => `
+                            <div class="user-item">
+                                <div class="user-info">
+                                    <strong>${user.name}</strong>
+                                    <span>${user.email}</span>
+                                    <span class="user-role-badge ${user.role}">${user.role}</span>
+                                </div>
+                                <div class="user-actions">
+                                    <button onclick="editUser('${user.id}')" class="edit-btn">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                    <button onclick="deleteUser('${user.id}')" class="delete-btn">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        // Add admin panel styles
+        adminPanel.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+        `;
+        
+        const content = adminPanel.querySelector('.admin-panel-content');
+        content.style.cssText = `
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 800px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+        `;
+        
+        document.body.appendChild(adminPanel);
+    }
+    
+    function deleteUser(userId) {
+        if (confirm('Tem certeza que deseja excluir este usuário?')) {
+            const users = getUsers();
+            const updatedUsers = users.filter(u => u.id !== userId);
+            saveUsers(updatedUsers);
+            showAdminPanel(); // Refresh panel
+            showNotification('Usuário excluído com sucesso!', 'success');
+        }
+    }
+    
+    function showCreateUserForm() {
+        const createForm = document.createElement('div');
+        createForm.className = 'create-user-form';
+        createForm.innerHTML = `
+            <div class="form-header">
+                <h3>Criar Novo Usuário</h3>
+                <button class="close-btn" onclick="this.parentElement.parentElement.remove()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <form id="create-user-form">
+                <div class="form-group">
+                    <label for="create-name">Nome Completo</label>
+                    <input type="text" id="create-name" required>
+                </div>
+                <div class="form-group">
+                    <label for="create-email">Email</label>
+                    <input type="email" id="create-email" required>
+                </div>
+                <div class="form-group">
+                    <label for="create-password">Senha</label>
+                    <input type="password" id="create-password" required>
+                </div>
+                <div class="form-group">
+                    <label for="create-role">Função</label>
+                    <select id="create-role" required>
+                        <option value="user">Usuário</option>
+                        <option value="admin">Administrador</option>
+                    </select>
+                </div>
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" onclick="this.parentElement.parentElement.parentElement.remove()">
+                        Cancelar
+                    </button>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-user-plus"></i>
+                        Criar Usuário
+                    </button>
+                </div>
+            </form>
+        `;
+        
+        // Add form styles
+        createForm.style.cssText = `
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 30px;
+            min-width: 400px;
+            z-index: 10001;
+            box-shadow: var(--shadow-card);
+        `;
+        
+        document.body.appendChild(createForm);
+        
+        // Add form submission handler
+        document.getElementById('create-user-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            createNewUser();
+        });
+    }
+    
+    function createNewUser() {
+        const name = document.getElementById('create-name').value;
+        const email = document.getElementById('create-email').value;
+        const password = document.getElementById('create-password').value;
+        const role = document.getElementById('create-role').value;
+        
+        // Validation
+        if (!name || !email || !password) {
+            showNotification('Por favor, preencha todos os campos.', 'error');
+            return;
+        }
+        
+        if (!isValidEmail(email)) {
+            showNotification('Por favor, insira um email válido.', 'error');
+            return;
+        }
+        
+        if (password.length < 6) {
+            showNotification('A senha deve ter pelo menos 6 caracteres.', 'error');
+            return;
+        }
+        
+        // Check if user already exists
+        const users = getUsers();
+        if (users.find(user => user.email === email)) {
+            showNotification('Este email já está cadastrado.', 'error');
+            return;
+        }
+        
+        // Create new user
+        const newUser = {
+            id: Date.now().toString(),
+            name: name,
+            email: email,
+            password: password,
+            role: role,
+            createdAt: new Date().toISOString()
+        };
+        
+        // Save user
+        users.push(newUser);
+        saveUsers(users);
+        
+        showNotification('Usuário criado com sucesso!', 'success');
+        
+        // Close form and refresh admin panel
+        document.querySelector('.create-user-form').remove();
+        showAdminPanel();
+    }
+    
+    function editUser(userId) {
+        const users = getUsers();
+        const user = users.find(u => u.id === userId);
+        
+        if (!user) {
+            showNotification('Usuário não encontrado.', 'error');
+            return;
+        }
+        
+        showNotification('Funcionalidade de edição em desenvolvimento.', 'info');
+    }
+    
+    // Initialize login state check
+    checkLoginState();
+    
+    
+    // Make functions global
+    window.logout = logout;
+    window.showAdminPanel = showAdminPanel;
+    window.deleteUser = deleteUser;
+    window.showCreateUserForm = showCreateUserForm;
+    window.createNewUser = createNewUser;
+    window.editUser = editUser;
+});

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meus Planos - Plataforma</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="nav">
+                <div class="nav-logo">
+                    <h2>Plataforma</h2>
+                </div>
+                <div class="nav-menu">
+                    <a href="index.html" class="nav-link">Início</a>
+                    <a href="#plans" class="nav-link">Planos</a>
+                    <a href="#contact" class="nav-link">Contato</a>
+                    <button id="login-btn" class="btn btn-primary">Começar Agora</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Plans Section -->
+    <section class="plans-section">
+        <div class="container">
+            <div class="plans-header">
+                <h1>Meus Planos</h1>
+                <p>Gerencie sua assinatura e veja os detalhes do seu plano atual</p>
+            </div>
+
+            <div class="current-plan">
+                <div class="plan-card active">
+                    <div class="plan-header">
+                        <h3 id="current-plan-name">Plano Básico</h3>
+                        <span class="plan-status" id="plan-status">Ativo</span>
+                    </div>
+                    <div class="plan-details">
+                        <div class="plan-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Acesso completo à plataforma</span>
+                        </div>
+                        <div class="plan-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Suporte prioritário</span>
+                        </div>
+                        <div class="plan-feature">
+                            <i class="fas fa-check"></i>
+                            <span>Atualizações automáticas</span>
+                        </div>
+                    </div>
+                    <div class="plan-info">
+                        <div class="plan-price">
+                            <span class="price" id="current-plan-price">R$ 29,90</span>
+                            <span class="period">/mês</span>
+                        </div>
+                        <div class="plan-date">
+                            <p>Próximo vencimento: <span id="next-billing">15/02/2025</span></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="plan-actions">
+                <button class="btn btn-primary" onclick="upgradePlan()">
+                    <i class="fas fa-arrow-up"></i>
+                    Fazer Upgrade
+                </button>
+                <button class="btn btn-secondary" onclick="changePlan()">
+                    <i class="fas fa-exchange-alt"></i>
+                    Alterar Plano
+                </button>
+                <button class="btn btn-danger" onclick="cancelPlan()">
+                    <i class="fas fa-times"></i>
+                    Cancelar Assinatura
+                </button>
+            </div>
+
+            <div class="billing-history">
+                <h3>Histórico de Cobrança</h3>
+                <div class="billing-table">
+                    <div class="billing-header">
+                        <span>Data</span>
+                        <span>Descrição</span>
+                        <span>Valor</span>
+                        <span>Status</span>
+                    </div>
+                    <div class="billing-row">
+                        <span>15/01/2025</span>
+                        <span>Plano Básico - Janeiro</span>
+                        <span>R$ 29,90</span>
+                        <span class="status paid">Pago</span>
+                    </div>
+                    <div class="billing-row">
+                        <span>15/12/2024</span>
+                        <span>Plano Básico - Dezembro</span>
+                        <span>R$ 29,90</span>
+                        <span class="status paid">Pago</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Plataforma</h3>
+                    <p>Sua solução completa para crescimento digital.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Links</h4>
+                    <ul>
+                        <li><a href="index.html">Início</a></li>
+                        <li><a href="#plans">Planos</a></li>
+                        <li><a href="#contact">Contato</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Suporte</h4>
+                    <ul>
+                        <li><a href="#help">Central de Ajuda</a></li>
+                        <li><a href="#contact">Contato</a></li>
+                        <li><a href="#privacy">Privacidade</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Plataforma. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="plans.js"></script>
+</body>
+</html>

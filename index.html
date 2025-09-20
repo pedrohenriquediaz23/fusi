@@ -23,7 +23,7 @@
                 <a href="downloads.html" class="nav-link">Baixar</a>
                 <a href="#contact" class="nav-link">Contato</a>
                 <a href="#plans" class="nav-link">Planos</a>
-                <button class="cta-button">Começar Agora</button>
+                <button class="cta-button" id="login-btn">Começar Agora</button>
             </div>
             <div class="hamburger">
                 <span></span>
@@ -720,6 +720,89 @@
             </div>
         </div>
     </footer>
+
+    <!-- Login Modal -->
+    <div id="login-modal" class="login-modal">
+        <div class="login-overlay">
+            <div class="login-container">
+                <div class="login-header">
+                    <h2>Entrar na Plataforma</h2>
+                    <button class="login-close">&times;</button>
+                </div>
+                
+                <div class="login-content">
+                    <div class="login-tabs">
+                        <button class="login-tab active" data-tab="login">Entrar</button>
+                        <button class="login-tab" data-tab="register">Cadastrar</button>
+                    </div>
+                    
+                    <!-- Login Form -->
+                    <form class="login-form active" id="login-form">
+                        <div class="form-group">
+                            <label for="login-email">Email</label>
+                            <input type="email" id="login-email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="login-password">Senha</label>
+                            <input type="password" id="login-password" required>
+                        </div>
+                        
+                        <div class="form-options">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="remember-me">
+                                <span class="checkmark"></span>
+                                Lembrar de mim
+                            </label>
+                            <a href="#" class="forgot-password">Esqueceu a senha?</a>
+                        </div>
+                        
+                        <button type="submit" class="login-submit">
+                            <i class="fas fa-sign-in-alt"></i>
+                            Entrar
+                        </button>
+                    </form>
+                    
+                    <!-- Register Form -->
+                    <form class="login-form" id="register-form">
+                        <div class="form-group">
+                            <label for="register-name">Nome Completo</label>
+                            <input type="text" id="register-name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="register-email">Email</label>
+                            <input type="email" id="register-email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="register-password">Senha</label>
+                            <input type="password" id="register-password" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="register-confirm">Confirmar Senha</label>
+                            <input type="password" id="register-confirm" required>
+                        </div>
+                        
+                        <div class="form-options">
+                            <label class="checkbox-label">
+                                <input type="checkbox" id="accept-terms" required>
+                                <span class="checkmark"></span>
+                                Aceito os <a href="#" class="terms-link">termos de uso</a>
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="login-submit">
+                            <i class="fas fa-user-plus"></i>
+                            Cadastrar
+                        </button>
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
